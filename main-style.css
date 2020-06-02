@@ -1,0 +1,21 @@
+@font-face {
+  font-family: pacifico;
+  src: url(Pacifico-Regular.ttf);
+}
+
+body{
+	background-color: #f00;
+}
+.thoughts{
+	height: 200px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+p{
+	color:white;
+	font-size: 50px;
+	font-family: pacifico;
+	font-weight: 500;
+
+}
