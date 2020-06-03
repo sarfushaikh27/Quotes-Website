@@ -16,13 +16,13 @@
 </head>
 <body> 
 <div class="container">
-	<div class="row">
-		<div class="col-md-12 thoughts">
-			<p>Quotify &nbsp;<span><p style="font-size: 20px;">Share your quotes</p></span></p>
-		</div>
+  <div class="row">
+    <div class="col-md-12 thoughts">
+      <p>Quotify &nbsp;<span><p style="font-size: 20px;">Share your quotes</p></span></p>
+    </div>
 </div>
 <div class="row">
-	<div class="col-md-6">
+  <div class="col-md-6">
  <div class="panel panel-primary">
       <div class="panel-heading">Share Quote</div>
       <div class="panel-body">
@@ -30,15 +30,15 @@
      <form>
      <div class="form-group">
     <label for="name">Name:</label>
-    <input type="text" class="form-control" id="name">
+    <input type="text" class="form-control" id="name" required>
   </div>
 <div class="form-group">
     <label for="email">Email address:</label>
-    <input type="email" class="form-control" id="email">
+    <input type="email" class="form-control" id="email" required>
   </div>
    <div class="form-group">
     <label for="Quote">Quote:</label>
-     <textarea class="form-control" id="quote"></textarea>
+     <textarea class="form-control" id="quote" required></textarea>
   </div>
    <center><button type="button" class="btn btn-primary" id="submit">Submit</button></center>
 </form>
@@ -46,27 +46,31 @@
 
       </div>
     </div>
-	</div>
+  </div>
 
-<!-- second column -->		
+<!-- second column -->    
 <div class="col-md-6">
  <div class="panel panel-primary">
       <div class="panel-heading">View Shared Quotes here</div>
       <div class="panel-body">
-      	<center><button class="btn btn-primary"  onclick="viewquotes();">view quotes </button></center>
+        <center><button class="btn btn-primary"  onclick="viewquotes();">view quotes </button></center>
       </div>
     </div>
-	</div>	
+  </div>  
 
 
 </div><!-- end of row -->
 </div><!-- end of container -->
 <script type="text/javascript">
      $('#submit').click(function(){
-     	var name = $('#name').val();
+      var name = $('#name').val();
      var email = $('#email').val();
      var quote = $('#quote').val();
-     //alert(name+email+quote);
+     if(name.length==0 || email.length==0 || quote.length==0)
+     {
+      swal("Fields cannot be empty!", "", "error");
+     }
+     else{
      $.ajax({
          type :'POST',
          url :'addquote.php',
@@ -77,14 +81,13 @@
              $('#name').val("");
              $('#email').val("");
              $('#quote').val("");
-
-
-         }
+        }
      });
+ }
     });
 
      function viewquotes(){
-     	window.location.href="viewquotes.php";
+      window.location.href="viewquotes.php";
      }
 </script>
 </body>
